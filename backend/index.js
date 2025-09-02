@@ -10,7 +10,6 @@ import promtRoutes from "./routes/promt.route.js";
 dotenv.config();
 
 const app = express();
-const port = process.env.PORT || 6001;
 const MONGO_URL = process.env.MONGO_URI;
 
 // middleware
@@ -46,9 +45,11 @@ app.get("/" , (req, res) => {
   res.send("Hello world")
 })
 
-
-// app.listen(port, () => {
-//   console.log(`Server is running on port ${port}`);
-// });
+if(process.env.NODE_ENV !== "production"){
+  const port = process.env.PORT || 6001;
+  app.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
+  });
+}
 
 export default app;
