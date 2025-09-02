@@ -17,7 +17,7 @@ const MONGO_URL = process.env.MONGO_URI;
 app.use(express.json());
 app.use(cookieParser());
 
-const allowedOrigins = process.env.FRONTEND_URLS.split(",");
+const allowedOrigins = process.env.FRONTEND_URLS.split(",") || [];
 
 app.use(
   cors({
@@ -47,9 +47,6 @@ app.get("/" , (req, res) => {
 })
 
 
-// app.listen(port, () => {
-//   console.log(`Server is running on port ${port}`);
-// });
-
-
-export default app;
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+});
